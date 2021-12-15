@@ -35,11 +35,17 @@ const items = [
 
 function App() {
 	const [cart, setCart] = useState([]);
+	const [showCart, setShowCart] = useState(false);
 	const [alert, setAlert] = useState({ content: "", show: false });
 
 	return (
 		<CartContext.Provider
-			value={{ cart: cart, setCart: setCart, setAlert: setAlert }}
+			value={{
+				cart: cart,
+				setCart: setCart,
+				setAlert: setAlert,
+				setShowCart: setShowCart,
+			}}
 		>
 			<MainHeader />
 			<main className={classes["app-main"]}>
@@ -60,7 +66,12 @@ function App() {
 					setAlert({ content: "", show: false });
 				}}
 			/>
-			<Order show={true} />
+			<Order
+				show={showCart}
+				onClose={() => {
+					setShowCart(false);
+				}}
+			/>
 		</CartContext.Provider>
 	);
 }

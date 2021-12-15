@@ -17,6 +17,7 @@ const Alert = (props) => {
 			main={main}
 			footer={footer}
 			show={props.show}
+			onClose={props.onConfirm}
 		/>
 	);
 };

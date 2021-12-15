@@ -8,7 +8,7 @@ const Cart = () => {
 	const ctx = useContext(CartContext);
 
 	const clickHandler = () => {
-		ctx.cart.forEach((item) => console.log(item));
+		ctx.setShowCart(true);
 	};
 
 	return (

@@ -10,7 +10,7 @@ const Modal = (props) => {
 
 	return (
 		<div>
-			<div className={classes.overlay}></div>
+			<div className={classes.overlay} onClick={props.onClose}></div>
 			<Card className={`${props.className} ${classes.modal}`}>
 				<main>{props.main}</main>
 				<footer>{props.footer}</footer>

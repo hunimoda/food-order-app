@@ -48,7 +48,7 @@ const MenuItem = (props) => {
 	};
 
 	return (
-		<div className={classes["menu-item"]}>
+		<li className={classes["menu-item"]}>
 			<div>
 				<h4>{props.name}</h4>
 				<p>{props.desc}</p>
@@ -67,7 +67,7 @@ const MenuItem = (props) => {
 					+Add
 				</Button>
 			</form>
-		</div>
+		</li>
 	);
 };
 
