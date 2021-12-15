@@ -1,0 +1,15 @@
+.cart-btn {
+	padding: 15px 45px;
+	display: flex;
+	align-items: center;
+}
+
+.cart-btn__text {
+	margin: 0 10px;
+}
+
+.cart-btn__count {
+	background: #ac3a17;
+	padding: 5px 15px;
+	border-radius: 100px;
+}
