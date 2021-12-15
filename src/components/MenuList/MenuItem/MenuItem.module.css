@@ -1,0 +1,60 @@
+.menu-item {
+	background: white;
+	display: flex;
+	width: 1000px;
+	justify-content: space-between;
+	padding: 20px 0;
+	border-bottom: 1px solid #ccc;
+}
+
+.menu-item h4 {
+	font-size: 24px;
+}
+
+.menu-item p {
+	font-style: italic;
+	font-size: 20px;
+	margin: 10px 0;
+}
+
+.menu-item h5 {
+	color: #8b481b;
+	font-size: 24px;
+}
+
+.menu-item form {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.amount-container {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.amount-container label {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.amount-container input {
+	width: 40px;
+	height: 25px;
+	outline: none;
+	font-size: 18px;
+	padding: 3px 8px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	margin-left: 20px;
+}
+
+.add-btn {
+	padding: 10px 40px;
+	background: #7f2607;
+}
+
+.add-btn:hover {
+	background: #8f3617;
+}

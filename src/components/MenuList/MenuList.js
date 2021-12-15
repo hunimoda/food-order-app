@@ -1,5 +1,11 @@
+import MenuItem from "./MenuItem/MenuItem";
+
 const MenuList = () => {
-	return <></>;
+	return (
+		<div>
+			<MenuItem />
+		</div>
+	);
 };
 
 export default MenuList;
