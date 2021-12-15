@@ -9,6 +9,7 @@ const MenuList = (props) => {
 			{props.items.map((item, index) => (
 				<MenuItem
 					key={index}
+					id={index}
 					name={item.name}
 					description={item.description}
 					price={item.price}

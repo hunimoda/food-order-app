@@ -12,10 +12,25 @@ const MenuItem = (props) => {
 		event.preventDefault();
 
 		ctx.setCart((prevCart) => {
-			return [
-				{ name: props.name, price: props.price, amount: amount },
-				...ctx.cart,
-			];
+			let itemExists = false;
+
+			const newCart = prevCart.map((item) => {
+				if (item.id === props.id) {
+					item.amount = String(+item.amount + parseInt(amount));
+					itemExists = true;
+				}
+				return item;
+			});
+
+			if (!itemExists) {
+				newCart.unshift({
+					id: props.id,
+					name: props.name,
+					price: props.price,
+					amount: amount,
+				});
+			}
+			return newCart;
 		});
 	};
 
