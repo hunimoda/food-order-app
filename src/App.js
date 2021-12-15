@@ -7,27 +7,41 @@ import Notice from "./components/Notice/Notice";
 import MenuList from "./components/MenuList/MenuList";
 
 import CartContext from "./contexts/cart";
+import Alert from "./components/Alert/Alert";
 
 const items = [
 	{
 		name: "Sushi",
-		description: "Finest fish and veggies",
+		desc: "Finest fish and veggies",
 		price: "22.99",
 	},
 	{
 		name: "Schnitzel",
-		description: "A german specialty!",
+		desc: "A german specialty!",
 		price: "16.50",
+	},
+	{
+		name: "Barbecue Burger",
+		desc: "American, raw, meaty",
+		price: "12.99",
+	},
+	{
+		name: "Green Bowl",
+		desc: "Healthy... and green...",
+		price: "18.99",
 	},
 ];
 
 function App() {
 	const [cart, setCart] = useState([]);
+	const [alert, setAlert] = useState({ content: "", show: false });
 
 	return (
-		<CartContext.Provider value={{ cart: cart, setCart: setCart }}>
+		<CartContext.Provider
+			value={{ cart: cart, setCart: setCart, setAlert: setAlert }}
+		>
 			<MainHeader />
-			<main>
+			<main className={classes["app-main"]}>
 				<div className={classes["bg-image-container"]}>
 					<img
 						className={classes["bg-image"]}
@@ -38,6 +52,13 @@ function App() {
 				<Notice />
 				<MenuList items={items} />
 			</main>
+			<Alert
+				content={alert.content}
+				show={alert.show}
+				onConfirm={() => {
+					setAlert({ content: "", show: false });
+				}}
+			/>
 		</CartContext.Provider>
 	);
 }

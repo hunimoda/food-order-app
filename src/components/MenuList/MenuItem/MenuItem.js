@@ -15,11 +15,15 @@ const MenuItem = (props) => {
 			let itemExists = false;
 
 			const newCart = prevCart.map((item) => {
+				const newItem = { ...item };
+
 				if (item.id === props.id) {
-					item.amount = String(+item.amount + parseInt(amount));
+					newItem.amount = String(
+						parseInt(item.amount) + parseInt(amount)
+					);
 					itemExists = true;
 				}
-				return item;
+				return newItem;
 			});
 
 			if (!itemExists) {
@@ -32,6 +36,11 @@ const MenuItem = (props) => {
 			}
 			return newCart;
 		});
+
+		ctx.setAlert({
+			content: `Added ${amount} pcs of ${props.name.toLowerCase()} to cart!`,
+			show: true,
+		});
 	};
 
 	const changeHandler = (event) => {
@@ -42,7 +51,7 @@ const MenuItem = (props) => {
 		<div className={classes["menu-item"]}>
 			<div>
 				<h4>{props.name}</h4>
-				<p>{props.description}</p>
+				<p>{props.desc}</p>
 				<h5>${props.price}</h5>
 			</div>
 			<form onSubmit={submitHandler}>
@@ -50,7 +59,7 @@ const MenuItem = (props) => {
 					<label>Amount</label>
 					<input
 						type="number"
-						defaultValue={amount}
+						defaultValue="1"
 						onChange={changeHandler}
 					/>
 				</div>

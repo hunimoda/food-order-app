@@ -11,7 +11,7 @@ const MenuList = (props) => {
 					key={index}
 					id={index}
 					name={item.name}
-					description={item.description}
+					desc={item.desc}
 					price={item.price}
 				/>
 			))}

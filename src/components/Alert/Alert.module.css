@@ -1,0 +1,15 @@
+.modal {
+	min-width: 300px;
+	padding: 50px;
+}
+
+.content {
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.confirm {
+	padding: 10px 30px;
+	margin-top: 20px;
+}
