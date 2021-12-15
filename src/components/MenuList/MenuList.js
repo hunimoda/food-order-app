@@ -6,10 +6,10 @@ import classes from "./MenuList.module.css";
 const MenuList = (props) => {
 	return (
 		<Card className={classes["menu-list"]}>
-			{props.items.map((item, index) => (
+			{props.items.map((item) => (
 				<MenuItem
-					key={index}
-					id={index}
+					key={item.id}
+					id={item.id}
 					name={item.name}
 					desc={item.desc}
 					price={item.price}

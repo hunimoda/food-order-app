@@ -18,9 +18,7 @@ const MenuItem = (props) => {
 				const newItem = { ...item };
 
 				if (item.id === props.id) {
-					newItem.amount = String(
-						parseInt(item.amount) + parseInt(amount)
-					);
+					newItem.amount = String(+item.amount + +amount);
 					itemExists = true;
 				}
 				return newItem;

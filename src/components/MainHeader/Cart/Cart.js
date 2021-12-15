@@ -8,7 +8,11 @@ const Cart = () => {
 	const ctx = useContext(CartContext);
 
 	const clickHandler = () => {
-		ctx.setShowCart(true);
+		if (ctx.cart.length === 0) {
+			ctx.setAlert({ content: "Your cart is empty!", show: true });
+		} else {
+			ctx.setShowCart(true);
+		}
 	};
 
 	return (
