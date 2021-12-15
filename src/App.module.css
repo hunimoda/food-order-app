@@ -3,32 +3,49 @@ main {
 	width: 100%;
 	min-height: calc(100vh - 77px);
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.bg-image-container {
+	width: 100%;
+	overflow: hidden;
+	position: absolute;
+	/* top: 150px; */
+	z-index: -1;
 }
 
 .bg-image {
 	width: 110%;
-	position: absolute;
 	transform: rotateZ(-11deg) scale(1.6);
 	transform-origin: left bottom;
-	top: 150px;
-	z-index: -1;
 }
 
 @media only screen and (min-width: 768px) {
-	.bg-image {
+	.bg-image-container {
 		top: 0;
+	}
+
+	.bg-image {
 		transform: rotateZ(-11deg);
 	}
 }
 
 @media only screen and (min-width: 900px) {
-	.bg-image {
+	.bg-image-container {
 		top: -150px;
 	}
 }
 
 @media only screen and (min-width: 1200px) {
-	.bg-image {
+	.bg-image-container {
 		top: -300px;
+	}
+}
+
+@media only screen and (min-width: 1400px) {
+	.bg-image-container {
+		top: -400px;
 	}
 }
