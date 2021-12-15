@@ -1,20 +1,22 @@
 import Button from "../../UI/Button/Button";
 import classes from "./MenuItem.module.css";
 
-const MenuItem = () => {
+const MenuItem = (props) => {
 	return (
 		<div className={classes["menu-item"]}>
 			<div>
-				<h4>Sushi</h4>
-				<p>Finest fish and veggies</p>
-				<h5>$22.99</h5>
+				<h4>{props.name}</h4>
+				<p>{props.description}</p>
+				<h5>${props.price}</h5>
 			</div>
 			<form>
 				<div className={classes["amount-container"]}>
 					<label>Amount</label>
-					<input type="number" value="1" />
+					<input type="number" defaultValue="1" />
 				</div>
-				<Button className={classes["add-btn"]}>+Add</Button>
+				<Button type="submit" className={classes["add-btn"]}>
+					+Add
+				</Button>
 			</form>
 		</div>
 	);
