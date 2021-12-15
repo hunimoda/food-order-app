@@ -171,3 +171,8 @@ input,
 select {
 	vertical-align: middle;
 }
+
+/*** Custom styles *****************/
+html {
+	background: #262526;
+}

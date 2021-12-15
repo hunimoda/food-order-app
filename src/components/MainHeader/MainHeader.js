@@ -7,7 +7,7 @@ const MainHeader = () => {
 	return (
 		<header className={classes.header}>
 			<h1>ReactMeals</h1>
-			<Cart />
+			<Cart count="3" />
 		</header>
 	);
 };
