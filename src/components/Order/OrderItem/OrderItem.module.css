@@ -1,0 +1,50 @@
+.order-item {
+	list-style: none;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 2px solid #66321f;
+	padding: 36px 0 16px;
+	min-width: 650px;
+}
+
+.order-item__info h4 {
+	font-size: 30px;
+	margin-bottom: 12px;
+}
+.order-item__info > div {
+	display: flex;
+	align-items: center;
+}
+
+.order-item__price {
+	color: #66321f;
+	font-size: 24px;
+}
+
+.order-item__count,
+.control button {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 10px 15px;
+	font-size: 22px;
+	font-weight: bold;
+}
+
+.order-item__count {
+	margin-left: 60px;
+}
+.control button {
+	width: 65px;
+	height: 44px;
+	margin-left: 15px;
+	color: #66321f;
+	border-color: #66321f;
+	background: white;
+	cursor: pointer;
+}
+
+.control button:hover {
+	background: #66321f;
+	color: white;
+}

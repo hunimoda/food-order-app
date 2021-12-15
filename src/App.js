@@ -8,6 +8,7 @@ import MenuList from "./components/MenuList/MenuList";
 
 import CartContext from "./contexts/cart";
 import Alert from "./components/Alert/Alert";
+import Order from "./components/Order/Order";
 
 const items = [
 	{
@@ -59,6 +60,7 @@ function App() {
 					setAlert({ content: "", show: false });
 				}}
 			/>
+			<Order show={true} />
 		</CartContext.Provider>
 	);
 }
