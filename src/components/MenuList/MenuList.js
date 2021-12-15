@@ -3,19 +3,17 @@ import MenuItem from "./MenuItem/MenuItem";
 
 import classes from "./MenuList.module.css";
 
-const MenuList = () => {
+const MenuList = (props) => {
 	return (
 		<Card className={classes["menu-list"]}>
-			<MenuItem
-				name="Sushi"
-				description="Finest fish and veggies"
-				price="22.99"
-			/>
-			<MenuItem
-				name="Schnitzel"
-				description="A german specialty!"
-				price="16.50"
-			/>
+			{props.items.map((item, index) => (
+				<MenuItem
+					key={index}
+					name={item.name}
+					description={item.description}
+					price={item.price}
+				/>
+			))}
 		</Card>
 	);
 };
