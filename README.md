@@ -8,4 +8,4 @@ This app is a clone application copied from a course in Udemy: **React - The Com
 
 It's a dummy app that can order food. You can add anything by any amount from the menu, then it will be added to the cart. The cart shows what you've added, and you can change the amount as the modal pops up. Of course you can neither order the food nor send the info to anywhere else since the app only implements the front.
 
-_You can take the code, do whatever you want with it._
+_2021.12.16 Hunimoda_
