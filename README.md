@@ -1,6 +1,6 @@
 # Food Order App
 
-_<div style="text-align: right">2021.12.16 Hunimoda</div>_
+_<div align="right">2021.12.16 Hunimoda</div>_
 
 -   What is this app?
 
