@@ -4,25 +4,17 @@ import Button from "../UI/Button/Button";
 import classes from "./Alert.module.css";
 
 const Alert = (props) => {
-	if (!props.show) {
-		return null;
-	}
-
-	const main = <p className={classes.content}>{props.content}</p>;
-	const footer = (
-		<Button className={classes.confirm} onClick={props.onConfirm}>
-			Confirm
-		</Button>
-	);
-
 	return (
 		<Modal
-			className={classes.modal}
-			main={main}
-			footer={footer}
-			show={true}
-			onClose={props.onConfirm}
-		/>
+			className={classes.alert}
+			show={props.show}
+			onBackdropClick={props.onConfirm}
+		>
+			<p className={classes.message}>{props.children}</p>
+			<Button className={classes.confirm} onClick={props.onConfirm}>
+				Confirm
+			</Button>
+		</Modal>
 	);
 };
 

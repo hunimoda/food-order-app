@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Cart } from "../../../contexts/cart";
 
 import Button from "../../UI/Button/Button";
+import Alert from "../../Alert/Alert";
 import classes from "./MenuItem.module.css";
 
 const MenuItem = (props) => {
@@ -9,17 +10,13 @@ const MenuItem = (props) => {
 
 	const cart = useContext(Cart);
 	const [amount, setAmount] = useState(1);
+	const [alert, setAlert] = useState("");
 
 	const addCartItemHandler = (event) => {
 		event.preventDefault();
 
 		cart.add({ id: item.id, name: item.name, price: item.price }, amount);
-
-		console.log("Show item add result as modal");
-		// cart.setAlert({
-		// 	content: `Added ${amount} pcs of ${props.name.toLowerCase()} to cart!`,
-		// 	show: true,
-		// });
+		setAlert(`Added ${amount} pcs of ${item.name.toLowerCase()} to cart!`);
 	};
 
 	const itemAmountChangeHandler = (event) => {
@@ -46,6 +43,14 @@ const MenuItem = (props) => {
 					+Add
 				</Button>
 			</form>
+			<Alert
+				show={alert}
+				onConfirm={() => {
+					setAlert("");
+				}}
+			>
+				{alert}
+			</Alert>
 		</li>
 	);
 };
