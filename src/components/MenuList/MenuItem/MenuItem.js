@@ -30,19 +30,25 @@ const MenuItem = (props) => {
 				<p>{item.desc}</p>
 				<h5>${item.price.toFixed(2)}</h5>
 			</div>
-			<form onSubmit={addCartItemHandler}>
+			<div className={classes["item-adder"]}>
 				<div className={classes["amount-container"]}>
 					<label>Amount</label>
 					<input
 						type="number"
 						defaultValue="1"
+						min="0"
+						step="1"
 						onChange={itemAmountChangeHandler}
 					/>
 				</div>
-				<Button type="submit" className={classes["add-btn"]}>
+				<Button
+					type="submit"
+					className={classes["add-btn"]}
+					onClick={addCartItemHandler}
+				>
 					+Add
 				</Button>
-			</form>
+			</div>
 			<Alert
 				show={alert}
 				onConfirm={() => {
