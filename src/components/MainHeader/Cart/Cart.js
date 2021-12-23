@@ -1,17 +1,19 @@
 import { useContext } from "react";
-import CartContext from "../../../contexts/cart";
+import { Cart as CartContext } from "../../../contexts/cart";
 
 import Button from "../../UI/Button/Button";
 import classes from "./Cart.module.css";
 
 const Cart = () => {
-	const ctx = useContext(CartContext);
+	const cart = useContext(CartContext);
 
 	const clickHandler = () => {
-		if (ctx.cart.length === 0) {
-			ctx.setAlert({ content: "Your cart is empty!", show: true });
+		if (cart.items.length === 0) {
+			// cart.setAlert({ content: "Your cart is empty!", show: true });
+			console.log("Show an alert that the cart is empty");
 		} else {
-			ctx.setShowCart(true);
+			// cart.setShowCart(true);
+			console.log("Show the cart/order modal");
 		}
 	};
 
@@ -19,7 +21,7 @@ const Cart = () => {
 		<Button className={classes["cart-btn"]} onClick={clickHandler}>
 			<i className="fas fa-shopping-cart"></i>
 			<div className={classes["cart-btn__text"]}>Your Cart</div>
-			<div className={classes["cart-btn__count"]}>{ctx.cart.length}</div>
+			<div className={classes["cart-btn__count"]}>{cart.items.length}</div>
 		</Button>
 	);
 };

@@ -1,6 +1,6 @@
 import React from "react";
-import Cart from "./Cart/Cart";
 
+import Cart from "./Cart/Cart";
 import classes from "./MainHeader.module.css";
 
 const MainHeader = () => {

@@ -1,14 +1,11 @@
-import React, { useState } from "react";
-import classes from "./App.module.css";
-import background from "./food-background.jpg";
+import React from "react";
+import { CartProvider } from "./contexts/cart";
 
 import MainHeader from "./components/MainHeader/MainHeader";
+import background from "./food-background.jpg";
 import Notice from "./components/Notice/Notice";
 import MenuList from "./components/MenuList/MenuList";
-
-import CartContext from "./contexts/cart";
-import Alert from "./components/Alert/Alert";
-import Order from "./components/Order/Order";
+import classes from "./App.module.css";
 
 const items = [
 	{
@@ -38,19 +35,8 @@ const items = [
 ];
 
 function App() {
-	const [cart, setCart] = useState([]);
-	const [showCart, setShowCart] = useState(false);
-	const [alert, setAlert] = useState({ content: "", show: false });
-
 	return (
-		<CartContext.Provider
-			value={{
-				cart: cart,
-				setCart: setCart,
-				setAlert: setAlert,
-				setShowCart: setShowCart,
-			}}
-		>
+		<CartProvider>
 			<MainHeader />
 			<main className={classes["app-main"]}>
 				<div className={classes["bg-image-container"]}>
@@ -63,20 +49,7 @@ function App() {
 				<Notice />
 				<MenuList items={items} />
 			</main>
-			<Alert
-				content={alert.content}
-				show={alert.show}
-				onConfirm={() => {
-					setAlert({ content: "", show: false });
-				}}
-			/>
-			<Order
-				show={showCart}
-				onClose={() => {
-					setShowCart(false);
-				}}
-			/>
-		</CartContext.Provider>
+		</CartProvider>
 	);
 }
 
