@@ -6,7 +6,7 @@ import classes from "./MenuItem.module.css";
 
 const MenuItem = (props) => {
 	const ctx = useContext(CartContext);
-	const [amount, setAmount] = useState("1");
+	const [amount, setAmount] = useState(1);
 
 	const submitHandler = (event) => {
 		event.preventDefault();
@@ -18,7 +18,7 @@ const MenuItem = (props) => {
 				const newItem = { ...item };
 
 				if (item.id === props.id) {
-					newItem.amount = String(+item.amount + +amount);
+					newItem.amount = item.amount + amount;
 					itemExists = true;
 				}
 				return newItem;
@@ -42,7 +42,7 @@ const MenuItem = (props) => {
 	};
 
 	const changeHandler = (event) => {
-		setAmount(event.target.value);
+		setAmount(parseInt(event.target.value));
 	};
 
 	return (
@@ -50,16 +50,12 @@ const MenuItem = (props) => {
 			<div>
 				<h4>{props.name}</h4>
 				<p>{props.desc}</p>
-				<h5>${props.price}</h5>
+				<h5>${props.price.toFixed(2)}</h5>
 			</div>
 			<form onSubmit={submitHandler}>
 				<div className={classes["amount-container"]}>
 					<label>Amount</label>
-					<input
-						type="number"
-						defaultValue="1"
-						onChange={changeHandler}
-					/>
+					<input type="number" defaultValue="1" onChange={changeHandler} />
 				</div>
 				<Button type="submit" className={classes["add-btn"]}>
 					+Add

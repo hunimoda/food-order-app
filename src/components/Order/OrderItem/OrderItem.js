@@ -11,7 +11,7 @@ const OrderItem = (props) => {
 			const newCart = prevCart.map((item) => {
 				const newItem = { ...item };
 				if (item.id === props.id) {
-					newItem.amount = String(+newItem.amount - 1);
+					newItem.amount = newItem.amount - 1;
 				}
 				return newItem;
 			});
@@ -23,7 +23,7 @@ const OrderItem = (props) => {
 			const newCart = prevCart.map((item) => {
 				const newItem = { ...item };
 				if (item.id === props.id) {
-					newItem.amount = String(+newItem.amount + 1);
+					newItem.amount = newItem.amount + 1;
 				}
 				return newItem;
 			});
@@ -37,11 +37,9 @@ const OrderItem = (props) => {
 				<h4>{props.name}</h4>
 				<div>
 					<h5 className={classes["order-item__price"]}>
-						${props.price}
+						${props.price.toFixed(2)}
 					</h5>
-					<div className={classes["order-item__count"]}>
-						x {props.amount}
-					</div>
+					<div className={classes["order-item__count"]}>x {props.amount}</div>
 				</div>
 			</div>
 			<div className={classes.control}>
