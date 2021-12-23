@@ -5,36 +5,15 @@ import Button from "../../UI/Button/Button";
 import classes from "./MenuItem.module.css";
 
 const MenuItem = (props) => {
+	const item = props.item;
+
 	const cart = useContext(Cart);
 	const [amount, setAmount] = useState(1);
 
 	const addCartItemHandler = (event) => {
 		event.preventDefault();
 
-		console.log("Add cart item here");
-		// cart.setCart((prevCart) => {
-		// 	let itemExists = false;
-
-		// 	const newCart = prevCart.map((item) => {
-		// 		const newItem = { ...item };
-
-		// 		if (item.id === props.id) {
-		// 			newItem.amount = item.amount + amount;
-		// 			itemExists = true;
-		// 		}
-		// 		return newItem;
-		// 	});
-
-		// 	if (!itemExists) {
-		// 		newCart.unshift({
-		// 			id: props.id,
-		// 			name: props.name,
-		// 			price: props.price,
-		// 			amount: amount,
-		// 		});
-		// 	}
-		// 	return newCart;
-		// });
+		cart.add({ id: item.id, name: item.name, price: item.price }, amount);
 
 		console.log("Show item add result as modal");
 		// cart.setAlert({
@@ -43,16 +22,16 @@ const MenuItem = (props) => {
 		// });
 	};
 
-	const itemCountChangeHandler = (event) => {
+	const itemAmountChangeHandler = (event) => {
 		setAmount(parseInt(event.target.value));
 	};
 
 	return (
 		<li className={classes["menu-item"]}>
 			<div>
-				<h4>{props.name}</h4>
-				<p>{props.desc}</p>
-				<h5>${props.price.toFixed(2)}</h5>
+				<h4>{item.name}</h4>
+				<p>{item.desc}</p>
+				<h5>${item.price.toFixed(2)}</h5>
 			</div>
 			<form onSubmit={addCartItemHandler}>
 				<div className={classes["amount-container"]}>
@@ -60,7 +39,7 @@ const MenuItem = (props) => {
 					<input
 						type="number"
 						defaultValue="1"
-						onChange={itemCountChangeHandler}
+						onChange={itemAmountChangeHandler}
 					/>
 				</div>
 				<Button type="submit" className={classes["add-btn"]}>
