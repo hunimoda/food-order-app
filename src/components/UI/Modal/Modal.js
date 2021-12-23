@@ -1,4 +1,5 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { createPortal } from "react-dom";
 
 import Card from "../Card/Card";
 import classes from "./Modal.module.css";
@@ -8,14 +9,14 @@ const Modal = (props) => {
 		return null;
 	}
 
-	return (
-		<div>
-			<div className={classes.overlay} onClick={props.onClose}></div>
+	return createPortal(
+		<Fragment>
+			<div className={classes.backdrop} onClick={props.onBackdropClick} />
 			<Card className={`${props.className} ${classes.modal}`}>
-				<main>{props.main}</main>
-				<footer>{props.footer}</footer>
+				{props.children}
 			</Card>
-		</div>
+		</Fragment>,
+		document.getElementById("modal")
 	);
 };
 
