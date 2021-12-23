@@ -15,6 +15,10 @@ const MenuItem = (props) => {
 	const addCartItemHandler = (event) => {
 		event.preventDefault();
 
+		if (isNaN(amount) || !Number.isInteger(amount) || amount <= 0) {
+			setAlert("Invalid value! Please check the amount.");
+			return;
+		}
 		cart.add({ id: item.id, name: item.name, price: item.price }, amount);
 		setAlert(`Added ${amount} pcs of ${item.name.toLowerCase()} to cart!`);
 	};
@@ -36,7 +40,7 @@ const MenuItem = (props) => {
 					<input
 						type="number"
 						defaultValue="1"
-						min="0"
+						min="1"
 						step="1"
 						onChange={itemAmountChangeHandler}
 					/>
