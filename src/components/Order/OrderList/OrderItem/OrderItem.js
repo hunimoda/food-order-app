@@ -8,20 +8,10 @@ const OrderItem = (props) => {
 
 	const cart = useContext(Cart);
 
-	const decreaseAmount = () => {
+	const decreaseAmountHandler = () => {
 		cart.reduce(item.id);
-		// cart.setCart((prevCart) => {
-		// 	const newCart = prevCart.map((item) => {
-		// 		const newItem = { ...item };
-		// 		if (item.id === props.id) {
-		// 			newItem.amount = newItem.amount - 1;
-		// 		}
-		// 		return newItem;
-		// 	});
-		// 	return newCart;
-		// });
 	};
-	const increaseAmount = () => {
+	const increaseAmountHandler = () => {
 		cart.add(item, 1);
 	};
 
@@ -37,10 +27,10 @@ const OrderItem = (props) => {
 				</div>
 			</div>
 			<div className={classes.control}>
-				<button onClick={decreaseAmount}>
+				<button onClick={decreaseAmountHandler}>
 					<i className="fas fa-minus" />
 				</button>
-				<button onClick={increaseAmount}>
+				<button onClick={increaseAmountHandler}>
 					<i className="fas fa-plus" />
 				</button>
 			</div>

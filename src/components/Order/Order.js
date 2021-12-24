@@ -10,11 +10,6 @@ import classes from "./Order.module.css";
 const Order = (props) => {
 	const cart = useContext(Cart);
 
-	const orderHandler = () => {
-		console.log(cart.items);
-		props.onClose();
-	};
-
 	let totalPrice = 0;
 	if (cart.items) {
 		totalPrice = cart.items
@@ -23,12 +18,16 @@ const Order = (props) => {
 			.toFixed(2);
 	}
 
+	const orderCartHandler = () => {
+		console.log(cart.items);
+	};
+
 	return (
 		<Modal show={props.show}>
 			<main>
 				<OrderList />
 				<div className={classes.total}>
-					<h3>Total Amount</h3>
+					<h3>Total Price</h3>
 					<h3>${totalPrice}</h3>
 				</div>
 			</main>
@@ -36,7 +35,7 @@ const Order = (props) => {
 				<Button className={classes["close-btn"]} onClick={props.onClose}>
 					Close
 				</Button>
-				<Button className={classes["order-btn"]} onClick={orderHandler}>
+				<Button className={classes["order-btn"]} onClick={orderCartHandler}>
 					Order
 				</Button>
 			</footer>

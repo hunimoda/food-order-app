@@ -34,7 +34,12 @@ const Cart = () => {
 			>
 				Your cart is empty!
 			</Alert>
-			<Order show={showCart} />
+			<Order
+				show={showCart}
+				onClose={() => {
+					setShowCart(false);
+				}}
+			/>
 		</Fragment>
 	);
 };
