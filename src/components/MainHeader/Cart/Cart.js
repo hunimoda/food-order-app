@@ -1,28 +1,41 @@
-import { useContext } from "react";
+import { useContext, useState, Fragment } from "react";
 import { Cart as CartContext } from "../../../contexts/cart";
 
 import Button from "../../UI/Button/Button";
+import Alert from "../../Alert/Alert";
+import Order from "../../Order/Order";
 import classes from "./Cart.module.css";
 
 const Cart = () => {
 	const cart = useContext(CartContext);
+	const [showAlert, setShowAlert] = useState(false);
+	const [showCart, setShowCart] = useState(false);
 
-	const clickHandler = () => {
+	const openCartHandler = () => {
 		if (cart.items.length === 0) {
-			// cart.setAlert({ content: "Your cart is empty!", show: true });
-			console.log("Show an alert that the cart is empty");
+			setShowAlert(true);
 		} else {
-			// cart.setShowCart(true);
-			console.log("Show the cart/order modal");
+			setShowCart(true);
 		}
 	};
 
 	return (
-		<Button className={classes["cart-btn"]} onClick={clickHandler}>
-			<i className="fas fa-shopping-cart"></i>
-			<div className={classes["cart-btn__text"]}>Your Cart</div>
-			<div className={classes["cart-btn__count"]}>{cart.items.length}</div>
-		</Button>
+		<Fragment>
+			<Button className={classes["cart-btn"]} onClick={openCartHandler}>
+				<i className="fas fa-shopping-cart" />
+				<div className={classes["cart-btn__text"]}>Your Cart</div>
+				<div className={classes["cart-btn__count"]}>{cart.items.length}</div>
+			</Button>
+			<Alert
+				show={showAlert}
+				onConfirm={() => {
+					setShowAlert(false);
+				}}
+			>
+				Your cart is empty!
+			</Alert>
+			<Order show={showCart} />
+		</Fragment>
 	);
 };
 

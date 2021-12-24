@@ -10,10 +10,14 @@ const Alert = (props) => {
 			show={props.show}
 			onBackdropClick={props.onConfirm}
 		>
-			<p className={classes.message}>{props.children}</p>
-			<Button className={classes.confirm} onClick={props.onConfirm}>
-				Confirm
-			</Button>
+			<main>
+				<p className={classes.message}>{props.children}</p>
+			</main>
+			<footer>
+				<Button className={classes.confirm} onClick={props.onConfirm}>
+					Confirm
+				</Button>
+			</footer>
 		</Modal>
 	);
 };

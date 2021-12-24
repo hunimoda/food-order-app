@@ -9,30 +9,30 @@
 	font-size: 30px;
 }
 
-.close,
-.order {
+.close-btn,
+.order-btn {
 	font-weight: normal;
 	font-size: 20px;
 	padding: 15px 40px;
 	border: 1px solid #7f2607;
 }
 
-.close {
+.close-btn {
 	background: white;
 	color: #7f2607;
 }
 
-.close:hover {
+.close-btn:hover {
 	background: #df9677;
 	border-color: #df9677;
 	color: white;
 }
 
-.order {
+.order-btn {
 	background: #7f2607;
 	margin-left: 20px;
 }
 
-.order:hover {
+.order-btn:hover {
 	background: #9f4627;
 }
