@@ -47,7 +47,7 @@ function App() {
 					/>
 				</div>
 				<Notice />
-				<MenuList items={items} />
+				<MenuList />
 			</main>
 		</CartProvider>
 	);
