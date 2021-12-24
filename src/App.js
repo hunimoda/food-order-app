@@ -5,7 +5,6 @@ import MainHeader from "./components/MainHeader/MainHeader";
 import background from "./food-background.jpg";
 import Notice from "./components/Notice/Notice";
 import MenuList from "./components/MenuList/MenuList";
-import Modal from "./components/UI/Modal/Modal";
 import classes from "./App.module.css";
 
 const items = [

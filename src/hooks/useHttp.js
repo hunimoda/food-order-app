@@ -4,7 +4,7 @@ const useHttp = () => {
 	const [response, setResponse] = useState({ data: {}, hasError: false });
 	const [isLoading, setIsLoading] = useState(false);
 
-	const sendRequest = useCallback(async (url, jsObject = null) => {
+	const sendHttpRequest = useCallback(async (url, jsObject = null) => {
 		setIsLoading(true);
 		const settings =
 			jsObject !== null
@@ -27,7 +27,7 @@ const useHttp = () => {
 		setIsLoading(false);
 	}, []);
 
-	return { response, sendRequest, isLoading };
+	return { response, sendHttpRequest, isLoading };
 };
 
 export default useHttp;

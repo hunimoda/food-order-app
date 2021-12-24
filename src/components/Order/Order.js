@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Cart } from "../../contexts/cart";
+import useHttp from "../../hooks/useHttp";
 
 import Modal from "../UI/Modal/Modal";
 import OrderList from "./OrderList/OrderList";
@@ -9,6 +10,7 @@ import classes from "./Order.module.css";
 
 const Order = (props) => {
 	const cart = useContext(Cart);
+	const { response, sendHttpRequest, isLoading } = useHttp();
 
 	let totalPrice = 0;
 	if (cart.items) {
@@ -19,8 +21,17 @@ const Order = (props) => {
 	}
 
 	const orderCartHandler = () => {
-		console.log(cart.items);
+		// console.log(cart.items);
+		// sendHttpRequest(
+		// 	"https://react-http-33900-default-rtdb.firebaseio.com/meals.json"
+		// );
 	};
+	// useEffect(() => {
+	// 	if (!response.hasError) {
+	// 		console.log(response.data);
+	// 		console.log(cart.items);
+	// 	}
+	// }, [response]);
 
 	return (
 		<Modal show={props.show}>
