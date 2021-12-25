@@ -34,13 +34,15 @@ const MenuList = (props) => {
 
 	return (
 		<Fragment>
-			<Card className={classes["menu-list"]}>
-				{items.length > 0 ? (
-					items.map((item) => <MenuItem key={item.id} item={item} />)
-				) : (
-					<p>No meals available</p>
-				)}
-			</Card>
+			{!isLoading && (
+				<Card className={classes["menu-list"]}>
+					{items.length > 0 ? (
+						items.map((item) => <MenuItem key={item.id} item={item} />)
+					) : (
+						<p className={classes["no-meals"]}>No meals available</p>
+					)}
+				</Card>
+			)}
 			<Alert
 				show={showError}
 				onConfirm={() => {
@@ -49,7 +51,9 @@ const MenuList = (props) => {
 			>
 				Couldn't fetch data due to an error!
 			</Alert>
-			{isLoading && <Modal show={true}>Loading...</Modal>}
+			<Modal show={isLoading} className={classes.loading}>
+				Loading...
+			</Modal>
 		</Fragment>
 	);
 };

@@ -9,30 +9,35 @@
 	font-size: 30px;
 }
 
-.close-btn,
-.order-btn {
+.transparent-btn,
+.filled-btn {
 	font-weight: normal;
 	font-size: 20px;
 	padding: 15px 40px;
 	border: 1px solid #7f2607;
 }
 
-.close-btn {
+.closed-btn {
+	margin: 0;
+	margin-top: 20px;
+}
+
+.transparent-btn {
 	background: white;
 	color: #7f2607;
 }
 
-.close-btn:hover {
+.transparent-btn:hover {
 	background: #df9677;
 	border-color: #df9677;
 	color: white;
 }
 
-.order-btn {
+.filled-btn {
 	background: #7f2607;
 	margin-left: 20px;
 }
 
-.order-btn:hover {
+.filled-btn:hover {
 	background: #9f4627;
 }

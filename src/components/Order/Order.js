@@ -10,15 +10,14 @@ import classes from "./Order.module.css";
 
 const Order = (props) => {
 	const cart = useContext(Cart);
-	const { response, sendHttpRequest, isLoading } = useHttp();
 
-	let totalPrice = 0;
-	if (cart.items) {
-		totalPrice = cart.items
-			.map((item) => item.price * item.amount)
-			.reduce((previous, current) => previous + current, 0)
-			.toFixed(2);
-	}
+	const isCartEmpty = cart.items.length === 0;
+	const totalPrice = !isCartEmpty
+		? cart.items
+				.map((item) => item.price * item.amount)
+				.reduce((previous, current) => previous + current, 0)
+				.toFixed(2)
+		: null;
 
 	const orderCartHandler = () => {
 		// console.log(cart.items);
@@ -33,22 +32,30 @@ const Order = (props) => {
 	// 	}
 	// }, [response]);
 
+	const closeBtnClass = !isCartEmpty
+		? classes["transparent-btn"]
+		: `${classes["filled-btn"]} ${classes["closed-btn"]}`;
+
 	return (
 		<Modal show={props.show}>
 			<main>
 				<OrderList />
-				<div className={classes.total}>
-					<h3>Total Price</h3>
-					<h3>${totalPrice}</h3>
-				</div>
+				{!isCartEmpty && (
+					<div className={classes.total}>
+						<h3>Total Price</h3>
+						<h3>${totalPrice}</h3>
+					</div>
+				)}
 			</main>
 			<footer>
-				<Button className={classes["close-btn"]} onClick={props.onClose}>
+				<Button className={closeBtnClass} onClick={props.onClose}>
 					Close
 				</Button>
-				<Button className={classes["order-btn"]} onClick={orderCartHandler}>
-					Order
-				</Button>
+				{!isCartEmpty && (
+					<Button className={classes["filled-btn"]} onClick={orderCartHandler}>
+						Order
+					</Button>
+				)}
 			</footer>
 		</Modal>
 	);

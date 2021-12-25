@@ -3,3 +3,9 @@
 	padding: 30px;
 	background: white;
 }
+
+.loading,
+.no-meals {
+	font-size: 22px;
+	font-weight: bold;
+}
