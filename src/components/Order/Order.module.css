@@ -41,3 +41,8 @@
 .filled-btn:hover {
 	background: #9f4627;
 }
+
+.wait {
+	font-size: 22px;
+	font-weight: bold;
+}
