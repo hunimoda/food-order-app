@@ -4,7 +4,6 @@ import Card from "../UI/Card/Card";
 import MenuItem from "./MenuItem/MenuItem";
 import useHttp from "../../hooks/useHttp";
 import useEffectSkipMount from "../../hooks/useEffectSkipMount";
-import Modal from "../UI/Modal/Modal";
 import Alert from "../Alert/Alert";
 
 import classes from "./MenuList.module.css";
@@ -16,6 +15,7 @@ const MenuList = (props) => {
 	const { response, sendHttpRequest, isLoading } = useHttp();
 	const [items, setItems] = useState([]);
 	const [showError, setShowError] = useState(false);
+	const [isLoadingComplete, setIsLoadingComplete] = useState(false);
 
 	useEffect(() => {
 		sendHttpRequest(availableMealsURL);
@@ -30,11 +30,12 @@ const MenuList = (props) => {
 		} else {
 			setShowError(true);
 		}
+		setIsLoadingComplete(true);
 	}, [response]);
 
 	return (
 		<Fragment>
-			{!isLoading && (
+			{isLoadingComplete && !response.hasError && (
 				<Card className={classes["menu-list"]}>
 					{items.length > 0 ? (
 						items.map((item) => <MenuItem key={item.id} item={item} />)
@@ -43,6 +44,7 @@ const MenuList = (props) => {
 					)}
 				</Card>
 			)}
+			{isLoading && <i className={`fas fa-spinner ${classes.loading}`} />}
 			<Alert
 				show={showError}
 				onConfirm={() => {
@@ -51,9 +53,6 @@ const MenuList = (props) => {
 			>
 				Couldn't fetch data due to an error!
 			</Alert>
-			<Modal show={isLoading} className={classes.loading}>
-				Loading...
-			</Modal>
 		</Fragment>
 	);
 };

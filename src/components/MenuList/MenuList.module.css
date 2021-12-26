@@ -4,8 +4,26 @@
 	background: white;
 }
 
-.loading,
 .no-meals {
 	font-size: 22px;
 	font-weight: bold;
+}
+
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.loading {
+	color: #ccc;
+	font-size: 36px;
+	margin-top: 80px;
+	animation-name: spin;
+	animation-duration: 1.2s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
 }
