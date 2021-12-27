@@ -2,6 +2,7 @@
 	padding: 15px 45px;
 	display: flex;
 	align-items: center;
+	will-change: transform;
 }
 
 .cart-btn__text {
@@ -12,4 +13,26 @@
 	background: #ac3a17;
 	padding: 5px 15px;
 	border-radius: 100px;
+}
+
+@keyframes jerk {
+	0% {
+		transform: scale(1);
+	}
+	25% {
+		transform: scale(1.15);
+	}
+	50% {
+		transform: scale(1);
+	}
+	75% {
+		transform: scale(0.97);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.jerk {
+	animation: jerk 0.2s linear 0s;
 }

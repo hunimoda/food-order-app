@@ -1,4 +1,4 @@
-import { useContext, useState, Fragment } from "react";
+import { useContext, useState, Fragment, useEffect } from "react";
 import { Cart as CartContext } from "../../../contexts/cart";
 
 import Button from "../../UI/Button/Button";
@@ -10,6 +10,11 @@ const Cart = () => {
 	const cart = useContext(CartContext);
 	const [showAlert, setShowAlert] = useState(false);
 	const [showCart, setShowCart] = useState(false);
+	const [shouldButtonJerk, setShouldButtonJerk] = useState(false);
+
+	const totalAmountOfItems = cart.items.reduce((previousSum, item) => {
+		return previousSum + item.amount;
+	}, 0);
 
 	const openCartHandler = () => {
 		if (cart.items.length === 0) {
@@ -19,12 +24,26 @@ const Cart = () => {
 		}
 	};
 
+	useEffect(() => {
+		if (totalAmountOfItems === 0) {
+			return;
+		}
+		setShouldButtonJerk(true);
+		setTimeout(() => {
+			setShouldButtonJerk(false);
+		}, 500);
+	}, [totalAmountOfItems]);
+
+	const buttonClasses = `${classes["cart-btn"]} ${
+		shouldButtonJerk && classes["jerk"]
+	}`;
+
 	return (
 		<Fragment>
-			<Button className={classes["cart-btn"]} onClick={openCartHandler}>
+			<Button className={buttonClasses} onClick={openCartHandler}>
 				<i className="fas fa-shopping-cart" />
 				<div className={classes["cart-btn__text"]}>Your Cart</div>
-				<div className={classes["cart-btn__count"]}>{cart.items.length}</div>
+				<div className={classes["cart-btn__count"]}>{totalAmountOfItems}</div>
 			</Button>
 			<Alert
 				show={showAlert}

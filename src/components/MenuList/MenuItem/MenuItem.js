@@ -20,7 +20,6 @@ const MenuItem = (props) => {
 			return;
 		}
 		cart.add({ id: item.id, name: item.name, price: item.price }, amount);
-		setAlert(`Added ${amount} pcs of ${item.name.toLowerCase()} to cart!`);
 	};
 
 	const itemAmountChangeHandler = (event) => {
