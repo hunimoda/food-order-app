@@ -22,6 +22,7 @@ function App() {
 				<Notice />
 				<MenuList />
 			</main>
+			<footer className={classes.mainFooter}>© 2021 HUNIMODA</footer>
 		</CartProvider>
 	);
 }

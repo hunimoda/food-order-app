@@ -1,7 +1,6 @@
 .app-main {
 	margin-top: 77px;
 	width: 100%;
-	min-height: calc(100vh - 77px);
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -48,4 +47,13 @@
 	.bg-image-container {
 		top: -400px;
 	}
+}
+
+.mainFooter {
+	background: #111;
+	height: 150px;
+	line-height: 150px;
+	text-align: center;
+	color: #aaa;
+	font-size: 20px;
 }
