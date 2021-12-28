@@ -1,11 +1,12 @@
-import React, { useState, Fragment, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Cart } from "../../contexts/cart";
 import useHttp from "../../hooks/useHttp";
 import useEffectSkipMount from "../../hooks/useEffectSkipMount";
 
 import Modal from "../UI/Modal/Modal";
 import OrderList from "./OrderList/OrderList";
-import Button from "../UI/Button/Button";
+import TotalPriceContainer from "./TotalPriceContainer/TotalPriceContainer";
+import OrderFooter from "./OrderFooter/OrderFooter";
 import Card from "../UI/Card/Card";
 import Alert from "../Alert/Alert";
 
@@ -18,12 +19,6 @@ const Order = (props) => {
 	const [showSuccessfulOrder, setShowSuccessfulOrder] = useState(false);
 
 	const isCartEmpty = cart.items.length === 0;
-	const totalPrice = !isCartEmpty
-		? cart.items
-				.map((item) => item.price * item.amount)
-				.reduce((previous, current) => previous + current, 0)
-				.toFixed(2)
-		: null;
 
 	const orderCartHandler = () => {
 		const order = {};
@@ -43,37 +38,16 @@ const Order = (props) => {
 		}
 	}, [response]);
 
-	return (
-		<Fragment>
-			<Modal show={props.show && !isLoading && !showSuccessfulOrder}>
-				<Card className={classes.orderModal}>
-					<main>
-						<OrderList />
-						{!isCartEmpty && (
-							<div className={classes.totalPriceContainer}>
-								<h3>Total Price</h3>
-								<h3>${totalPrice}</h3>
-							</div>
-						)}
-					</main>
-					<footer className={classes.buttonContainer}>
-						<Button onClick={props.onClose} className={classes.transparentBtn}>
-							Close
-						</Button>
-						{!isCartEmpty && (
-							<Button
-								onClick={orderCartHandler}
-								className={`${classes.filledBtn} ${classes.rightmostBtn}`}
-							>
-								Order
-							</Button>
-						)}
-					</footer>
-				</Card>
-			</Modal>
+	if (isLoading) {
+		return (
 			<Modal show={isLoading}>
 				<p>Wait...</p>
 			</Modal>
+		);
+	}
+
+	if (showSuccessfulOrder) {
+		return (
 			<Alert
 				show={showSuccessfulOrder}
 				onConfirm={() => {
@@ -83,7 +57,19 @@ const Order = (props) => {
 			>
 				Order was successful!
 			</Alert>
-		</Fragment>
+		);
+	}
+
+	return (
+		<Modal show={props.show}>
+			<Card className={classes.orderModal}>
+				<main>
+					<OrderList />
+					{!isCartEmpty && <TotalPriceContainer />}
+				</main>
+				<OrderFooter onClose={props.onClose} onOrder={orderCartHandler} />
+			</Card>
+		</Modal>
 	);
 };
 
