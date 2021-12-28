@@ -1,4 +1,4 @@
-import { useContext, useState, Fragment, useEffect } from "react";
+import { useContext, useState, useEffect, Fragment } from "react";
 import { Cart as CartContext } from "../../../contexts/cart";
 
 import Button from "../../UI/Button/Button";
@@ -38,6 +38,26 @@ const Cart = () => {
 		shouldButtonJerk && classes["jerk"]
 	}`;
 
+	const cartEmptyAlert = showAlert && (
+		<Alert
+			show={showAlert}
+			onConfirm={() => {
+				setShowAlert(false);
+			}}
+		>
+			Your cart is empty!
+		</Alert>
+	);
+
+	const orderCart = showCart && (
+		<Order
+			show={showCart}
+			onClose={() => {
+				setShowCart(false);
+			}}
+		/>
+	);
+
 	return (
 		<Fragment>
 			<Button className={buttonClasses} onClick={openCartHandler}>
@@ -45,20 +65,8 @@ const Cart = () => {
 				<div className={classes["cart-btn__text"]}>Your Cart</div>
 				<div className={classes["cart-btn__count"]}>{totalAmountOfItems}</div>
 			</Button>
-			<Alert
-				show={showAlert}
-				onConfirm={() => {
-					setShowAlert(false);
-				}}
-			>
-				Your cart is empty!
-			</Alert>
-			<Order
-				show={showCart}
-				onClose={() => {
-					setShowCart(false);
-				}}
-			/>
+			{cartEmptyAlert}
+			{orderCart}
 		</Fragment>
 	);
 };

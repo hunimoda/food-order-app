@@ -15,10 +15,9 @@ import classes from "./Order.module.css";
 const Order = (props) => {
 	const cart = useContext(Cart);
 
-	const { response, sendHttpRequest, isLoading } = useHttp();
+	const { response, sendHttpRequest, isLoading: isOrdering } = useHttp();
 	const [showSuccessfulOrder, setShowSuccessfulOrder] = useState(false);
-
-	const isCartEmpty = cart.items.length === 0;
+	const [hasError, setHasError] = useState(false);
 
 	const orderCartHandler = () => {
 		const order = {};
@@ -34,14 +33,14 @@ const Order = (props) => {
 		if (!response.hasError) {
 			setShowSuccessfulOrder(true);
 		} else {
-			//
+			setHasError(true);
 		}
 	}, [response]);
 
-	if (isLoading) {
+	if (isOrdering) {
 		return (
-			<Modal show={isLoading}>
-				<p>Wait...</p>
+			<Modal>
+				<i className={`fas fa-spinner ${classes.loadingSpinner}`} />
 			</Modal>
 		);
 	}
@@ -49,7 +48,6 @@ const Order = (props) => {
 	if (showSuccessfulOrder) {
 		return (
 			<Alert
-				show={showSuccessfulOrder}
 				onConfirm={() => {
 					setShowSuccessfulOrder(false);
 					props.onClose();
@@ -60,12 +58,24 @@ const Order = (props) => {
 		);
 	}
 
+	if (hasError) {
+		return (
+			<Alert
+				onConfirm={() => {
+					setHasError(false);
+				}}
+			>
+				Something went wrong!
+			</Alert>
+		);
+	}
+
 	return (
 		<Modal show={props.show}>
 			<Card className={classes.orderModal}>
 				<main>
 					<OrderList />
-					{!isCartEmpty && <TotalPriceContainer />}
+					<TotalPriceContainer />
 				</main>
 				<OrderFooter onClose={props.onClose} onOrder={orderCartHandler} />
 			</Card>

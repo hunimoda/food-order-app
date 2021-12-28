@@ -7,6 +7,10 @@ import classes from "./TotalPriceContainer.module.css";
 const TotalPriceContainer = () => {
 	const cart = useContext(Cart);
 
+	if (cart.items.length === 0) {
+		return null;
+	}
+
 	const totalPrice = cart.items
 		.map((item) => item.price * item.amount)
 		.reduce((previous, current) => previous + current, 0)

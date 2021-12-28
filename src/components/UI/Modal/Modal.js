@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import classes from "./Modal.module.css";
 
 const Modal = (props) => {
-	if (!props.show) {
+	if (props.show === false) {
 		return null;
 	}
 

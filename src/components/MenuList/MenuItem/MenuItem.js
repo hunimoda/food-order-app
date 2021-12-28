@@ -53,7 +53,7 @@ const MenuItem = (props) => {
 				</Button>
 			</div>
 			<Alert
-				show={alert}
+				show={alert !== ""}
 				onConfirm={() => {
 					setAlert("");
 				}}
