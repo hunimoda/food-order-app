@@ -1,48 +1,46 @@
-.total {
+.orderModal {
+	background: white;
+	padding: 30px;
+}
+
+.totalPriceContainer {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin: 20px 0;
-}
-
-.total h3 {
 	font-size: 30px;
+	margin: 15px 0;
 }
 
-.transparent-btn,
-.filled-btn {
+.buttonContainer {
+	text-align: end;
+}
+
+.transparentBtn,
+.filledBtn {
 	font-weight: normal;
-	font-size: 20px;
-	padding: 15px 40px;
-	border: 1px solid #7f2607;
+	font-size: 24px;
+	padding: 10px 30px;
+	text-align: center;
+	line-height: 24px;
 }
 
-.closed-btn {
-	margin: 0;
-	margin-top: 20px;
+.filledBtn {
+	background: #892b06;
 }
 
-.transparent-btn {
-	background: white;
-	color: #7f2607;
+.transparentBtn {
+	border: 1px solid #892b06;
+	background: transparent;
+	color: #892b06;
 }
 
-.transparent-btn:hover {
-	background: #df9677;
-	border-color: #df9677;
+.transparentBtn:hover,
+.filledBtn:hover {
+	background-color: #5a1a01;
+	border-color: #5a1a01;
 	color: white;
 }
 
-.filled-btn {
-	background: #7f2607;
+.rightmostBtn {
 	margin-left: 20px;
-}
-
-.filled-btn:hover {
-	background: #9f4627;
-}
-
-.wait {
-	font-size: 22px;
-	font-weight: bold;
 }

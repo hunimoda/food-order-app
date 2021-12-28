@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { createPortal } from "react-dom";
 
-import Card from "../Card/Card";
 import classes from "./Modal.module.css";
 
 const Modal = (props) => {
@@ -12,9 +11,7 @@ const Modal = (props) => {
 	return createPortal(
 		<Fragment>
 			<div className={classes.backdrop} onClick={props.onBackdropClick} />
-			<Card className={`${props.className} ${classes.modal}`}>
-				{props.children}
-			</Card>
+			<div className={classes.modal}>{props.children}</div>
 		</Fragment>,
 		document.getElementById("modal")
 	);

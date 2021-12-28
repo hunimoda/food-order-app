@@ -1,14 +1,15 @@
 import React, { useState, Fragment, useContext } from "react";
 import { Cart } from "../../contexts/cart";
 import useHttp from "../../hooks/useHttp";
+import useEffectSkipMount from "../../hooks/useEffectSkipMount";
 
 import Modal from "../UI/Modal/Modal";
 import OrderList from "./OrderList/OrderList";
 import Button from "../UI/Button/Button";
-import useEffectSkipMount from "../../hooks/useEffectSkipMount";
+import Card from "../UI/Card/Card";
+import Alert from "../Alert/Alert";
 
 import classes from "./Order.module.css";
-import Alert from "../Alert/Alert";
 
 const Order = (props) => {
 	const cart = useContext(Cart);
@@ -42,38 +43,36 @@ const Order = (props) => {
 		}
 	}, [response]);
 
-	const closeBtnClass = !isCartEmpty
-		? classes["transparent-btn"]
-		: `${classes["filled-btn"]} ${classes["closed-btn"]}`;
-
 	return (
 		<Fragment>
 			<Modal show={props.show && !isLoading && !showSuccessfulOrder}>
-				<main>
-					<OrderList />
-					{!isCartEmpty && (
-						<div className={classes.total}>
-							<h3>Total Price</h3>
-							<h3>${totalPrice}</h3>
-						</div>
-					)}
-				</main>
-				<footer>
-					<Button className={closeBtnClass} onClick={props.onClose}>
-						Close
-					</Button>
-					{!isCartEmpty && (
-						<Button
-							className={classes["filled-btn"]}
-							onClick={orderCartHandler}
-						>
-							Order
+				<Card className={classes.orderModal}>
+					<main>
+						<OrderList />
+						{!isCartEmpty && (
+							<div className={classes.totalPriceContainer}>
+								<h3>Total Price</h3>
+								<h3>${totalPrice}</h3>
+							</div>
+						)}
+					</main>
+					<footer className={classes.buttonContainer}>
+						<Button onClick={props.onClose} className={classes.transparentBtn}>
+							Close
 						</Button>
-					)}
-				</footer>
+						{!isCartEmpty && (
+							<Button
+								onClick={orderCartHandler}
+								className={`${classes.filledBtn} ${classes.rightmostBtn}`}
+							>
+								Order
+							</Button>
+						)}
+					</footer>
+				</Card>
 			</Modal>
 			<Modal show={isLoading}>
-				<p className={classes.wait}>Wait...</p>
+				<p>Wait...</p>
 			</Modal>
 			<Alert
 				show={showSuccessfulOrder}
