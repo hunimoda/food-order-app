@@ -6,6 +6,7 @@ import useEffectSkipMount from "../../hooks/useEffectSkipMount";
 import Modal from "../UI/Modal/Modal";
 import OrderList from "./OrderList/OrderList";
 import TotalPriceContainer from "./TotalPriceContainer/TotalPriceContainer";
+import OrderForm from "./OrderForm/OrderForm";
 import OrderFooter from "./OrderFooter/OrderFooter";
 import Card from "../UI/Card/Card";
 import Alert from "../Alert/Alert";
@@ -76,6 +77,7 @@ const Order = (props) => {
 				<main>
 					<OrderList />
 					<TotalPriceContainer />
+					<OrderForm />
 				</main>
 				<OrderFooter onClose={props.onClose} onOrder={orderCartHandler} />
 			</Card>

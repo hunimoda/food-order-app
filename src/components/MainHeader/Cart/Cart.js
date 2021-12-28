@@ -8,55 +8,56 @@ import classes from "./Cart.module.css";
 
 const Cart = () => {
 	const cart = useContext(CartContext);
-	const [showAlert, setShowAlert] = useState(false);
-	const [showCart, setShowCart] = useState(false);
-	const [shouldButtonJerk, setShouldButtonJerk] = useState(false);
+
+	const [showEmptyCartAlert, setShowEmptyCartAlert] = useState(false);
+	const [showCartModal, setShowCartModal] = useState(false);
+	const [shouldCartButtonJerk, setShouldCartButtonJerk] = useState(false);
 
 	const totalAmountOfItems = cart.items.reduce((previousSum, item) => {
 		return previousSum + item.amount;
 	}, 0);
 
-	const openCartHandler = () => {
-		if (cart.items.length === 0) {
-			setShowAlert(true);
-		} else {
-			setShowCart(true);
-		}
-	};
-
 	useEffect(() => {
 		if (totalAmountOfItems === 0) {
 			return;
 		}
-		setShouldButtonJerk(true);
+		setShouldCartButtonJerk(true);
 		setTimeout(() => {
-			setShouldButtonJerk(false);
+			setShouldCartButtonJerk(false);
 		}, 500);
 	}, [totalAmountOfItems]);
 
-	const buttonClasses = `${classes["cart-btn"]} ${
-		shouldButtonJerk && classes["jerk"]
-	}`;
+	const openCartHandler = () => {
+		if (totalAmountOfItems === 0) {
+			setShowEmptyCartAlert(true);
+		} else {
+			setShowCartModal(true);
+		}
+	};
 
-	const cartEmptyAlert = showAlert && (
+	const cartEmptyAlert = (
 		<Alert
-			show={showAlert}
+			show={showEmptyCartAlert}
 			onConfirm={() => {
-				setShowAlert(false);
+				setShowEmptyCartAlert(false);
 			}}
 		>
 			Your cart is empty!
 		</Alert>
 	);
 
-	const orderCart = showCart && (
+	const orderCart = (
 		<Order
-			show={showCart}
+			show={showCartModal}
 			onClose={() => {
-				setShowCart(false);
+				setShowCartModal(false);
 			}}
 		/>
 	);
+
+	const buttonClasses = `${classes["cart-btn"]} ${
+		shouldCartButtonJerk && classes["jerk"]
+	}`;
 
 	return (
 		<Fragment>
