@@ -1,6 +1,7 @@
 .app-main {
 	margin-top: 77px;
 	width: 100%;
+	min-height: calc(100vh - 150px - 77px);
 	position: relative;
 	display: flex;
 	flex-direction: column;
