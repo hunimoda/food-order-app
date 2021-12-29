@@ -26,14 +26,16 @@ const OrderItem = (props) => {
 					<div className={classes["order-item__count"]}>x {item.amount}</div>
 				</div>
 			</div>
-			<div className={classes.control}>
-				<button onClick={decreaseAmountHandler}>
-					<i className="fas fa-minus" />
-				</button>
-				<button onClick={increaseAmountHandler}>
-					<i className="fas fa-plus" />
-				</button>
-			</div>
+			{!props.isCheckoutMode && (
+				<div className={classes.control}>
+					<button onClick={decreaseAmountHandler}>
+						<i className="fas fa-minus" />
+					</button>
+					<button onClick={increaseAmountHandler}>
+						<i className="fas fa-plus" />
+					</button>
+				</div>
+			)}
 		</li>
 	);
 };

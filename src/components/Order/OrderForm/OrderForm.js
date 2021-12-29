@@ -87,7 +87,7 @@ const OrderForm = (props) => {
 			return; // Return if form is not valid
 		}
 		/*** Submit form here ***********************/
-		console.log("First name : " + name);
+		props.onConfirm({ name, street, postalCode, city });
 		/********************************************/
 	};
 
@@ -126,8 +126,14 @@ const OrderForm = (props) => {
 				value={city}
 			/>
 			<div className={classes.formAction}>
-				<Button className={classes.cancelButton}>Cancel</Button>
-				<Button disabled={!isFormValid} className={classes.confirmButton}>
+				<Button className={classes.cancelButton} onClick={props.onCancel}>
+					Cancel
+				</Button>
+				<Button
+					type="submit"
+					disabled={!isFormValid}
+					className={classes.confirmButton}
+				>
 					Confirm
 				</Button>
 			</div>

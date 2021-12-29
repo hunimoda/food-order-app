@@ -23,18 +23,27 @@ const Order = (props) => {
 
 	const orderCartHandler = () => {
 		setShowCheckoutForm(true);
-		// const order = {};
-		// cart.items.forEach((item) => {
-		// 	order[item.id] = item.amount;
-		// });
-		// sendHttpRequest(
-		// 	"https://react-http-33900-default-rtdb.firebaseio.com/orders.json",
-		// 	order
-		// );
+	};
+
+	const cancelCheckoutHandler = () => {
+		setShowCheckoutForm(false);
+	};
+
+	const confirmCheckoutHandler = (client) => {
+		const order = {};
+		cart.items.forEach((item) => {
+			order[item.id] = item.amount;
+		});
+		sendHttpRequest(
+			"https://react-http-33900-default-rtdb.firebaseio.com/orders.json",
+			{ client, order }
+		);
 	};
 	useEffectSkipMount(() => {
 		if (!response.hasError) {
+			setShowCheckoutForm(false);
 			setShowSuccessfulOrder(true);
+			cart.reset();
 		} else {
 			setHasError(true);
 		}
@@ -77,9 +86,14 @@ const Order = (props) => {
 		<Modal show={props.show}>
 			<Card className={classes.orderModal}>
 				<main>
-					<OrderList />
+					<OrderList isCheckoutMode={showCheckoutForm} />
 					<TotalPriceContainer />
-					{showCheckoutForm && <OrderForm />}
+					{showCheckoutForm && (
+						<OrderForm
+							onCancel={cancelCheckoutHandler}
+							onConfirm={confirmCheckoutHandler}
+						/>
+					)}
 				</main>
 				{!showCheckoutForm && (
 					<OrderFooter onClose={props.onClose} onOrder={orderCartHandler} />

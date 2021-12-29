@@ -36,3 +36,9 @@
 .rightmostBtn {
 	margin-left: 20px;
 }
+
+button:disabled,
+button:disabled:hover {
+	background: #ccc;
+	cursor: not-allowed;
+}

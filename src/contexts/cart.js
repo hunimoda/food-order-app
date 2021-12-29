@@ -4,6 +4,7 @@ export const Cart = createContext({
 	items: [],
 	add: (newItem, amount) => {},
 	reduce: (id) => {},
+	reset: () => {},
 });
 
 export const CartProvider = (props) => {
@@ -39,8 +40,12 @@ export const CartProvider = (props) => {
 		});
 	};
 
+	const reset = () => {
+		setItems([]);
+	};
+
 	return (
-		<Cart.Provider value={{ items, add, reduce }}>
+		<Cart.Provider value={{ items, add, reduce, reset }}>
 			{props.children}
 		</Cart.Provider>
 	);

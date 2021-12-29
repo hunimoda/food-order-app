@@ -4,7 +4,7 @@ import { Cart } from "../../../contexts/cart";
 import OrderItem from "./OrderItem/OrderItem";
 import classes from "./OrderList.module.css";
 
-const OrderList = () => {
+const OrderList = (props) => {
 	const cart = useContext(Cart);
 
 	if (cart.items.length === 0) {
@@ -14,7 +14,11 @@ const OrderList = () => {
 	return (
 		<ul>
 			{cart.items.map((item) => (
-				<OrderItem key={item.id} item={item} />
+				<OrderItem
+					key={item.id}
+					item={item}
+					isCheckoutMode={props.isCheckoutMode}
+				/>
 			))}
 		</ul>
 	);

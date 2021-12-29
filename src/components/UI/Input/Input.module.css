@@ -21,11 +21,11 @@
 	flex-grow: 1;
 	border: 1px solid #ccc;
 	border-radius: 5px;
+	outline: none;
 }
 
 .invalid input {
 	border-color: rgb(255, 111, 111);
-	border-width: 2px;
 	background: rgb(255, 214, 214);
 }
 
