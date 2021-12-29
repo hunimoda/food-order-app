@@ -1,0 +1,38 @@
+.checkoutForm {
+	margin-top: 40px;
+}
+
+.formAction {
+	text-align: end;
+}
+
+.cancelButton,
+.confirmButton {
+	font-weight: normal;
+	font-size: 24px;
+	padding: 10px 30px;
+	text-align: center;
+	line-height: 24px;
+}
+
+.confirmButton {
+	background: #892b06;
+	margin-left: 15px;
+}
+
+.cancelButton {
+	border: 1px solid #892b06;
+	background: transparent;
+	color: #892b06;
+}
+
+.cancelButton:hover,
+.confirmButton:hover {
+	background-color: #5a1a01;
+	border-color: #5a1a01;
+	color: white;
+}
+
+.rightmostBtn {
+	margin-left: 20px;
+}

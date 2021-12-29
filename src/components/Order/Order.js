@@ -19,16 +19,18 @@ const Order = (props) => {
 	const { response, sendHttpRequest, isLoading: isOrdering } = useHttp();
 	const [showSuccessfulOrder, setShowSuccessfulOrder] = useState(false);
 	const [hasError, setHasError] = useState(false);
+	const [showCheckoutForm, setShowCheckoutForm] = useState(false);
 
 	const orderCartHandler = () => {
-		const order = {};
-		cart.items.forEach((item) => {
-			order[item.id] = item.amount;
-		});
-		sendHttpRequest(
-			"https://react-http-33900-default-rtdb.firebaseio.com/orders.json",
-			order
-		);
+		setShowCheckoutForm(true);
+		// const order = {};
+		// cart.items.forEach((item) => {
+		// 	order[item.id] = item.amount;
+		// });
+		// sendHttpRequest(
+		// 	"https://react-http-33900-default-rtdb.firebaseio.com/orders.json",
+		// 	order
+		// );
 	};
 	useEffectSkipMount(() => {
 		if (!response.hasError) {
@@ -77,9 +79,11 @@ const Order = (props) => {
 				<main>
 					<OrderList />
 					<TotalPriceContainer />
-					<OrderForm />
+					{showCheckoutForm && <OrderForm />}
 				</main>
-				<OrderFooter onClose={props.onClose} onOrder={orderCartHandler} />
+				{!showCheckoutForm && (
+					<OrderFooter onClose={props.onClose} onOrder={orderCartHandler} />
+				)}
 			</Card>
 		</Modal>
 	);
