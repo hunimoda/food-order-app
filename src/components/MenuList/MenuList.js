@@ -7,6 +7,7 @@ import useEffectSkipMount from "../../hooks/useEffectSkipMount";
 import Alert from "../Alert/Alert";
 
 import classes from "./MenuList.module.css";
+import Modal from "../UI/Modal/Modal";
 
 const availableMealsURL =
 	"https://react-http-33900-default-rtdb.firebaseio.com/meals.json";
@@ -33,18 +34,16 @@ const MenuList = (props) => {
 		setIsLoadingComplete(true);
 	}, [response]);
 
-	return (
-		<Fragment>
-			{isLoadingComplete && !response.hasError && (
-				<Card className={classes["menu-list"]}>
-					{items.length > 0 ? (
-						items.map((item) => <MenuItem key={item.id} item={item} />)
-					) : (
-						<p className={classes["no-meals"]}>No meals available</p>
-					)}
-				</Card>
-			)}
-			{isLoading && <i className={`fas fa-spinner ${classes.loading}`} />}
+	if (isLoading) {
+		return (
+			<Modal>
+				<i className={`fas fa-spinner ${classes.loading}`} />
+			</Modal>
+		);
+	}
+
+	if (showError) {
+		return (
 			<Alert
 				show={showError}
 				onConfirm={() => {
@@ -53,7 +52,20 @@ const MenuList = (props) => {
 			>
 				Couldn't fetch data due to an error!
 			</Alert>
-		</Fragment>
+		);
+	}
+
+	return (
+		isLoadingComplete &&
+		!response.hasError && (
+			<Card className={classes["menu-list"]}>
+				{items.length > 0 ? (
+					items.map((item) => <MenuItem key={item.id} item={item} />)
+				) : (
+					<p className={classes["no-meals"]}>No meals available</p>
+				)}
+			</Card>
+		)
 	);
 };
 
